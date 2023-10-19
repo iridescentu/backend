@@ -26,7 +26,7 @@ public class Personal {
 		if (question == 1) {
 			System.out.println("I like to playing Overwatch, too!");
 		} else {
-			System.out.println("Think again.");
+			System.out.println("That's impossible! Think about it again.");
 			return;
 		}
 		
@@ -38,7 +38,7 @@ public class Personal {
 		owQues = s.nextInt();
 		switch(owQues) {
 		case 1: 
-			System.out.println("Nice!");
+			System.out.println("Great! Nice to hear that.");
 			break;
 		case 2:
 			System.out.println("Then, I will let you know some informations of Overwatch!");
@@ -64,7 +64,7 @@ public class Personal {
 		
 		// 메인 포지션을 묻기 위한 Scanner 입력값 받기
 		System.out.println("What is your main position in Overwatch?");
-		System.out.print("1. Tank \n2. Damage \n3. Support");
+		System.out.println("1. Tank \n2. Damage \n3. Support");
 		select = s.nextInt();
 		
 		// 포지션별 영웅 리스트를 위한 배열
@@ -72,20 +72,76 @@ public class Personal {
 		String[] dps = {"Genji", "Reaper", "Mei", "Bastion", "Sojourn", "Soldier: 76", "Sombra", "Symmetra", "Ashe", "Echo", "Widowmaker", "Junkrat", "Cassidy", "Torbjorn", "Tracer", "Pharah", "Hanzo"};
 		String[] healer = {"Lifeweaver", "Lucio", "Mercy", "Moira", "Baptiste", "Brigitte", "Ana", "Illari", "Zenyatta", "Kiriko"};
 		
-		// switch문 작성
-		switch(select) {
-		case 1: 
-			System.out.println("Ok, your main position is Tank. Then what is your favorite Tank Character?");
-			System.out.println("Tank Characters are: ");
-			for (int i = 0; i < tank.length; i++) {
-				System.out.print(tank[i] + " ");
-				System.out.println();
-			}
-//		case 2:
-//			System.out.println
+		// 사용자의 메인 포지션을 선택받기 위한 switch문 작성
+		switch(select) {	
+		case 1:
+			// 사용자에게 탱커 캐릭터들의 이름을 for문을 사용해 표시하기
+	        System.out.println("Ok, your main position is Tank. Here are the Tank Characters: ");
+	        for (int i = 0; i < tank.length; i++) {
+	            int tankNew = i + 1;
+	            System.out.println(tankNew + ". " + tank[i]);
+	        }
+	        
+	        // 사용자에게 좋아하는 탱커 캐릭터의 값을 if문으로 입력받기
+	        System.out.println("Enter the number of your favorite Tank character:");
+	        int tankChoice = s.nextInt();
+
+	        if (tankChoice >= 1 && tankChoice <= tank.length) {
+	            String selectedTank = tank[tankChoice - 1];
+	            System.out.println("Oh, your favorite Tank character is " + selectedTank + ". I like to playing with " + selectedTank + ", too!");
+	        } else {
+	            System.out.println("Invalid choice. Please choose a number between 1 and " + tank.length);
+	        }
+	        break;
+		
+		case 2:
+			// 사용자에게 딜러 캐릭터들의 이름을 for문을 사용해 표시하기
+			System.out.println("Ok, your main position is Damage. Here are the Damage Characters: ");
+
+
 			
+			// 사용자에게 좋아하는 딜러 캐릭터의 값을 if문으로 입력받기
+			System.out.println("Enter the number of your favorite Damage character:");
+	        int dpsChoice = s.nextInt();
+
+	        if (dpsChoice >= 1 && dpsChoice <= dps.length) {
+	            String selectedDps = dps [dpsChoice - 1];
+	            System.out.println("Oh, your favorite Damage character is " + selectedDps + ". I like to playing with " + selectedDps + ", too!");
+	        } else {
+	            System.out.println("Invalid choice. Please choose a number between 1 and " + dps.length);
+	        }
+	        break;
+			
+		case 3:
+			// 사용자에게 힐러 캐릭터들의 이름을 for문을 사용해 표시하기
+			System.out.println("Ok, your main position is Support. Then, what is your favorite Support character?");
+			System.out.println("Support Characters are: ");
+			
+			for (int k = 0; k < healer.length; k++) {
+				int healerNew = k + 1;
+				System.out.println(healerNew + ". " + healer[k]);
+			}
+
+
+			// 사용자에게 좋아하는 힐러 캐릭터의 값을 if문으로 입력받기
+			System.out.println("Enter the number of your favorite Support character:");
+			int healerChoice = s.nextInt();
+
+			if (healerChoice >= 1 && healerChoice <= healer.length) {
+				String selectedHealer = healer [healerChoice - 1];
+				System.out.println("Oh, your favorite Support character is " + selectedHealer + ". I like to playing with " + selectedHealer + ", too!");
+			} else {
+				 System.out.println("Invalid choice. Please choose a number between 1 and " + healer.length);
+			}
+			break;
+			
+		default:
+			System.out.println("Invalid choice. Please choose a number between 1 and 3.");
+			break;
 		}
 
 	}
 
 }
+
+// 어떤 걸 더 추가해야 할지 모르겠어요.........................................
