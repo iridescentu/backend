@@ -13,7 +13,7 @@ public class FirstApplication {
 		SpringApplication.run(FirstApplication.class, args);
 		
 		var context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
-		System.out.println(context.getBean("name"));
+		System.out.println(context.getBean("personParams"));
 	}
 	
 	@Bean
