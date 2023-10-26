@@ -1,10 +1,11 @@
 package iridescentu.first.employeeManagement.repository;
 
-public class EmployeeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+import iridescentu.first.employeeManagement.model.Employee;
 
-	}
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
+	
 
 }
