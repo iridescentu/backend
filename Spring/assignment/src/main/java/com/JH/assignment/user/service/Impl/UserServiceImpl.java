@@ -1,15 +1,17 @@
-package iridescentu.first.employeeManagement.service.impl;
+package com.JH.assignment.user.service.Impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import iridescentu.first.employeeManagement.exception.ResourceNotFoundException;
-import iridescentu.first.employeeManagement.model.Employee;
-import iridescentu.first.employeeManagement.repository.EmployeeRepository;
-import iridescentu.first.employeeManagement.service.EmployeeService;
+import com.JH.assignment.user.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+	private UserRepository userRepository;
+}
+
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
