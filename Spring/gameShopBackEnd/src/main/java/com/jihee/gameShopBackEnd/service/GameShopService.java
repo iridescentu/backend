@@ -3,6 +3,7 @@ package com.jihee.gameShopBackEnd.service;
 import java.util.List;
 
 import com.jihee.gameShopBackEnd.model.Game;
+import com.jihee.gameShopBackEnd.model.Purchase;
 
 public interface GameShopService {
 
@@ -20,4 +21,10 @@ public interface GameShopService {
 	
 	// ID로 게임 한 개의 정보를 삭제
 	void deleteGameById(long id);
+	
+	// 구매 예정 목록을 저장
+	Purchase savePurchase(Purchase purchase);
+	
+	// 구매 예정 목록을 전부 불러오기
+	List<Purchase> getAllPurchase();
 }

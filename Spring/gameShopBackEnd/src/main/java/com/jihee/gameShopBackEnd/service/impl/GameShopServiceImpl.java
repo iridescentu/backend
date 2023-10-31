@@ -7,18 +7,22 @@ import org.springframework.stereotype.Service;
 
 import com.jihee.gameShopBackEnd.exception.ResourceNotFoundException;
 import com.jihee.gameShopBackEnd.model.Game;
+import com.jihee.gameShopBackEnd.model.Purchase;
 import com.jihee.gameShopBackEnd.repository.GameShopRepository;
+import com.jihee.gameShopBackEnd.repository.PurchaseRepository;
 import com.jihee.gameShopBackEnd.service.GameShopService;
 
 @Service
 public class GameShopServiceImpl implements GameShopService {
 
 	private GameShopRepository gameShopRepository;
+	private PurchaseRepository purchaseRepository;
 	
 	@Autowired
-	public GameShopServiceImpl(GameShopRepository gameShopRepository) {
+	public GameShopServiceImpl(GameShopRepository gameShopRepository, PurchaseRepository purchaseRepository) {
 		super();
 		this.gameShopRepository = gameShopRepository;
+		this.purchaseRepository = purchaseRepository;
 	}
 	
 	// 게임 정보를 새로 생성한다
@@ -69,6 +73,16 @@ public class GameShopServiceImpl implements GameShopService {
 		gameShopRepository.findById(id).orElseThrow(()->
 		new ResourceNotFoundException("Game", "id", id));
 		gameShopRepository.deleteById(id);
+	}
+
+	@Override
+	public Purchase savePurchase(Purchase purchase) {
+		return purchaseRepository.save(purchase);
+	}
+
+	@Override
+	public List<Purchase> getAllPurchase() {
+		return purchaseRepository.findAll();
 	}
 
 	

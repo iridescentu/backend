@@ -1,5 +1,6 @@
 package com.jihee.gameShopBackEnd.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jihee.gameShopBackEnd.model.Game;
+import com.jihee.gameShopBackEnd.model.Purchase;
 import com.jihee.gameShopBackEnd.service.GameShopService;
 
 @RestController
@@ -76,13 +78,30 @@ public class GameShopController {
 	}
 	
 	// ID로 게임 한 개의 정보를 삭제한다
-	@DeleteMapping("{id}")
+	@DeleteMapping("{id}") //id는 변수이기 때문에 {중괄호} 안에 적어 준다
 	public ResponseEntity<String> deleteGame(@PathVariable long id) {
 		gameShopService.deleteGameById(id);
 		return new ResponseEntity<String>("Game deleted successfully", HttpStatus.OK);
 	}
 
-
+	@PostMapping("purchase")
+	public ResponseEntity<Purchase> savePurchase(@RequestBody Purchase purchase) {
+		return new ResponseEntity<Purchase>(gameShopService.savePurchase(purchase), HttpStatus.OK);
+	}
+	
+	@PostMapping("purchaselist")
+	public ResponseEntity<List<Purchase>> savePurchaseList(@RequestBody List<Purchase> purchaseList) {
+		List<Purchase> savedPurchaseList = new ArrayList<Purchase>();
+		for (Purchase purchase : purchaseList) {
+			savedPurchaseList.add(gameShopService.savePurchase(purchase));
+		}
+		return new ResponseEntity<List<Purchase>>(savedPurchaseList, HttpStatus.OK);
+	}
+	
+	@GetMapping("purchase")
+	public ResponseEntity<List<Purchase>> getAllPurchase() {
+		return new ResponseEntity<List<Purchase>>(gameShopService.getAllPurchase(), HttpStatus.OK);
+	}
 	
 
 }
