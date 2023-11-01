@@ -91,6 +91,7 @@ public class GameShopController {
 	
 	@PostMapping("purchaselist")
 	public ResponseEntity<List<Purchase>> savePurchaseList(@RequestBody List<Purchase> purchaseList) {
+		System.out.println(purchaseList);
 		List<Purchase> savedPurchaseList = new ArrayList<Purchase>();
 		for (Purchase purchase : purchaseList) {
 			savedPurchaseList.add(gameShopService.savePurchase(purchase));
