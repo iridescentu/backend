@@ -5,33 +5,35 @@ import java.time.format.DateTimeFormatter;
 
 import com.JH.securityproject.common.status.Gender;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 public class MemberDto {
-
 	private long id;
-	
 	@NotBlank
 	private String loginId;
 	
 	@NotBlank
 	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&*!])[A-Za-z\\d@#$%^&*!]{8,20}$",
-				message = "영문 숫자 특수문자를 포함한 8~20자리로 입력해 주세요.")
+			message = "영문 숫자 특수문자를 포함한 8~20자리로 입력해주세요")
 	private String password;
 	
+	@NotBlank
 	private String name;
 	
 	@NotBlank
 	@Pattern(regexp = "^([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))$",
-				message = "날짜형식(YYYY-MM-DD)")
+			message = "날짜형식(YYYY-MM-DD)을 확인해주세요")
 	private String birthDate;
 	
 	@NotBlank
 	@Pattern(regexp = "^(MAN|WOMAN)$",
-				message = "MAN 혹은 WOMAN 중 하나를 선택해 주세요.")
+		message = "MAN이나 WOMAN중 하나를 선택해주세요")
 	private String gender;
 	
+	@NotBlank
+	@Email
 	private String email;
 
 	public MemberDto() {
@@ -83,7 +85,7 @@ public class MemberDto {
 	}
 
 	public LocalDate getBirthDate() {
-		return LocalDate.parse(birthDate,
+		return LocalDate.parse(birthDate, 
 				DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 
@@ -106,6 +108,5 @@ public class MemberDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 	
 }

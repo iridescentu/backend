@@ -18,16 +18,15 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "member",
-		uniqueConstraints = {
-				@UniqueConstraint(name="uk_member_login_id", columnNames = {"loginId"})
-		})
+	uniqueConstraints = {
+		@UniqueConstraint(name="uk_member_login_id", columnNames = {"loginId"})
+	})
 public class Member {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false, length=30, updatable = false)
+	@Column(nullable = false, length = 30, updatable = false)
 	private String loginId;
 	
 	@Column(nullable = false, length = 100)
@@ -118,7 +117,5 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-
 }
+	

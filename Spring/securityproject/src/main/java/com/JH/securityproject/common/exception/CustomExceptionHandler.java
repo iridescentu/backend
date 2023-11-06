@@ -16,29 +16,33 @@ import com.JH.securityproject.common.status.ResultCode;
 
 @ControllerAdvice
 public class CustomExceptionHandler {
-
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseBody
-	protected ResponseEntity<BaseResponse<Map<String, String>>>
+	protected ResponseEntity<BaseResponse<Map<String, String>>> 
 		handleValidationExceptions(MethodArgumentNotValidException ex) {
 		Map<String, String> errors = new HashMap<String, String>();
 		ex.getBindingResult().getAllErrors().forEach(error -> {
 			String fieldName = ((FieldError) error).getField();
 			String errorMessage = error.getDefaultMessage();
-			errors.put(fieldName, errorMessage != null ? errorMessage: "Not Exception Message");
-			});
-			return ResponseEntity.badRequest().body(new BaseResponse<>(
-					ResultCode.ERROR.name(),
-					errors,
-					ResultCode.ERROR.getMsg()
-					));
-		}
-		
+			errors.put(fieldName, errorMessage != null ? errorMessage 
+					: "Not Exception Message");
+		});
+		return ResponseEntity.badRequest().body(new BaseResponse<>(
+				ResultCode.ERROR.name(),
+				errors,
+				ResultCode.ERROR.getMsg()
+		));		
+	}
+	
 	@ExceptionHandler(InvalidInputException.class)
     protected ResponseEntity<BaseResponse<Map<String, String>>>
     invalidInputException(InvalidInputException ex) {
-        Map<String, String> errors = Map.of(ex.getFieldName(), (ex.getMessage() != null ? ex.getMessage() : "Not Exception Message"));
-        return new ResponseEntity<>(new BaseResponse<>(ResultCode.ERROR.name(), errors, ResultCode.ERROR.getMsg()), HttpStatus.BAD_REQUEST);
+        Map<String, String> errors = Map.of(ex.getFieldName(), 
+        		(ex.getMessage() != null ? ex.getMessage() : "Not Exception Message"));
+        return new ResponseEntity<>(new BaseResponse<>(
+        		ResultCode.ERROR.name(), errors, ResultCode.ERROR.getMsg()), 
+        		HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

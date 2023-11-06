@@ -26,6 +26,5 @@ public class InvalidInputException extends RuntimeException {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
+		
 }

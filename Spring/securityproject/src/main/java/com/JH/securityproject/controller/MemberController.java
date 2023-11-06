@@ -18,14 +18,12 @@ import com.JH.securityproject.service.MemberService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins="http://localhost:3000", 
-methods= {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping("/api/member")
+@CrossOrigin(origins="http://localhost:3000", 
+	methods= {RequestMethod.GET, RequestMethod.POST})
 public class MemberController {
-
 	private MemberService memberService;
-	
 	@Autowired
 	public MemberController(MemberService memberService) {
 		super();
@@ -33,20 +31,20 @@ public class MemberController {
 	}
 	
 	@PostMapping("signup")
-	public ResponseEntity<BaseResponse<Void>> signup(@RequestBody @Valid MemberDto memberDto) {
+	public ResponseEntity<BaseResponse<Void>> signUp(@RequestBody @Valid MemberDto memberDto) {
 		return new ResponseEntity<BaseResponse<Void>>(
 				new BaseResponse<Void>(ResultCode.SUCCESS.name(),
-						null,
-						memberService.signUp(memberDto )),
+				null,
+				memberService.signUp(memberDto)),
 				HttpStatus.CREATED);
 	}
 	
 	@PostMapping("login")
-	public ResponseEntity<BaseResponse<Void>> signup(@RequestBody @Valid MemberLoginDto memberLoginDto) {
-		return new ResponseEntity<BaseResponse<Void>>(
-				new BaseResponse<Void>(ResultCode.SUCCESS.name(),
-						null,
-						memberService.login(memberLoginDto)),
-				HttpStatus.OK);
-	}
+    public ResponseEntity<BaseResponse<Void>> login(@RequestBody @Valid MemberLoginDto memberLoginDto) {
+        return new ResponseEntity<>(new BaseResponse<Void>(
+        		ResultCode.SUCCESS.name(), 
+        		null, 
+        		memberService.login(memberLoginDto)), 
+        		HttpStatus.OK) ;
+    }
 }
