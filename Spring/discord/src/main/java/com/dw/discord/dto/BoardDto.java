@@ -6,9 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 public class BoardDto {
 	
 	@NotBlank
-	private Long id;
-	
-	@NotBlank
 	private String author;
 	
 	@NotBlank
@@ -26,10 +23,9 @@ public class BoardDto {
 	}
 
 	// 전체 생성자
-	public BoardDto(@NotBlank Long id, @NotBlank String author, @NotBlank String title, @NotBlank String text,
+	public BoardDto(@NotBlank String author, @NotBlank String title, @NotBlank String text,
 			@NotBlank String category) {
 		super();
-		this.id = id;
 		this.author = author;
 		this.title = title;
 		this.text = text;
@@ -38,14 +34,6 @@ public class BoardDto {
 
 	
 	// Getters and Setters
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getAuthor() {
 		return author;
 	}

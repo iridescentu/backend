@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,7 @@ import com.dw.discord.service.impl.MemberServiceImpl;
 import jakarta.validation.Valid;
 
 @RestController
+@RequestMapping("/api")
 
 // 동일 출처 원칙 
 @CrossOrigin(origins = "http://localhost:3000",
@@ -32,7 +34,7 @@ public class MemberController {
 		this.memberServiceImpl = memberServiceImpl;
 	}
 
-	@PostMapping("/api/signup") // Backend에서는 주소를 정할 때 /api 로 시작하는 것이 좋은 습관임
+	@PostMapping("/basic/signup") // Backend에서는 주소를 정할 때 /api 로 시작하는 것이 좋은 습관임
 	// 하지만, Frontend 쪽에서 주소를 정할 때는 api를 빼고 만드는 게 나음
 	// 현재 /api/signup으로 예를 들자면,
 	// Backend에서는 지금처럼 /api/signup으로 하고,
@@ -45,7 +47,7 @@ public class MemberController {
 				HttpStatus.CREATED);
 	}
 	
-	@PostMapping("/api/login")
+	@PostMapping("/basic/login")
 	public ResponseEntity<BaseResponse<Void>> login(@RequestBody @Valid MemberLoginDto membeLoginrDto) {
 		return new ResponseEntity<BaseResponse<Void>> (
 				memberServiceImpl.login(membeLoginrDto),

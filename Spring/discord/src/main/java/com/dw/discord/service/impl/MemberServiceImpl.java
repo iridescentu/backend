@@ -10,6 +10,8 @@ import com.dw.discord.dto.BaseResponse;
 import com.dw.discord.dto.MemberDto;
 import com.dw.discord.dto.MemberLoginDto;
 import com.dw.discord.enumstatus.Gender;
+import com.dw.discord.enumstatus.ResultCode;
+import com.dw.discord.exception.InvalidRequestException;
 import com.dw.discord.model.Member;
 import com.dw.discord.repository.MemberRepository;
 import com.dw.discord.service.MemberService;
@@ -33,10 +35,11 @@ public class MemberServiceImpl implements MemberService{
 	public BaseResponse<Void> signUp(MemberDto memberDto) {
 		Member member = memberRepository.findByLoginId(memberDto.getLoginId());
 		if (member != null) {
-			return new BaseResponse<Void>( // <Void>를 쓴 이유는 아래 코드에 null을 썼기 때문에. 만약 null 자리에 숫자가 있었다면 <int>를 썼을 것.
-					"FAIL",
-					null,
-					"이미 등록된 ID입니다");
+//			return new BaseResponse<Void>( // <Void>를 쓴 이유는 아래 코드에 null을 썼기 때문에. 만약 null 자리에 숫자가 있었다면 <int>를 썼을 것.
+//					"FAIL",
+//					null,
+//					"이미 등록된 ID입니다");
+			throw new InvalidRequestException("Duplicate ID", "이미 등록된 ID입니다");
 		}
 		member = new Member();
 		member.setId(null);
@@ -50,7 +53,8 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberRepository.save(member);
 		return new BaseResponse<Void>( // <Void>를 쓴 이유는 아래 코드에 null을 썼기 때문에. 만약 null 자리에 숫자가 있었다면 <int>를 썼을 것.
-				"SUCCESS",
+//				"SUCCESS",
+				ResultCode.SUCCESS.name(),
 				null,
 				"회원가입이 완료되었습니다");
 	}
@@ -60,14 +64,16 @@ public class MemberServiceImpl implements MemberService{
 			Member member = memberRepository.findByLoginId(memberLoginDto.getLoginId());
 			if (member != null && member.getPassword().matches(memberLoginDto.getPassword())) {
 				return new BaseResponse<Void>( // <Void>를 쓴 이유는 아래 코드에 null을 썼기 때문에. 만약 null 자리에 숫자가 있었다면 <int>를 썼을 것.
-						"SUCCESS",
+//						"SUCCESS",
+						ResultCode.SUCCESS.name(),
 						null,
 						"로그인이 완료되었습니다");
 			} else {
-				return new BaseResponse<Void>( // <Void>를 쓴 이유는 아래 코드에 null을 썼기 때문에. 만약 null 자리에 숫자가 있었다면 <int>를 썼을 것.
-						"FAIL",
-						null,
-						"ID 혹은 Password가 올바르지 않습니다");
+//				return new BaseResponse<Void>( // <Void>를 쓴 이유는 아래 코드에 null을 썼기 때문에. 만약 null 자리에 숫자가 있었다면 <int>를 썼을 것.
+//						"FAIL",
+//						null,
+//						"ID 혹은 Password가 올바르지 않습니다");
+				throw new InvalidRequestException("Invalid ID / PW", "ID 혹은 Password가 올바르지 않습니다");
 			}
 	}
 }
