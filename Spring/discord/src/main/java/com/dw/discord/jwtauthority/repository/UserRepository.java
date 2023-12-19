@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	 // 위 메소드와 동일한 메소드 (JPQL(=JPA에서 사용하는 SQL) 버전)
 	 // JPA에서 SQL을 사용하지 않지만 @Query라는 Annotation을 이용해 SQL을 사용할 수 있도록 한다.
+	 // 조금 복잡한 것에는 JPA 쓰기 힘들기 때문에 그럴 때는 아래처럼 SQL을 사용하는 것이 더 좋다.
 	@Query("SELECT u FROM User u JOIN FETCH u.authorities WHERE u.username = :username")
 	Optional<User> findAuthoritiesByUsername(@Param("username") String username);
-
 }

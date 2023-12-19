@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')") // 권한 설정
     public ResponseEntity<BaseResponse<UserDto>> getCurrentUserInfo(HttpServletRequest request) {
         return ResponseEntity.ok(new BaseResponse<>(
                         ResultCode.SUCCESS.name(),
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{username}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')") // 권한 설정
     public ResponseEntity<BaseResponse<UserDto>> getUserInfo(@PathVariable String username) {
         return ResponseEntity.ok(new BaseResponse<>(
                         ResultCode.SUCCESS.name(),

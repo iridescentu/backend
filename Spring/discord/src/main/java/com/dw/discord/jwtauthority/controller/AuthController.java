@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
+// 메모해 둔 JWT의 #인증절차 참고
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins="http://localhost:3000",

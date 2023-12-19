@@ -37,7 +37,7 @@ public class User {
     name = "user_authority", // JoinTable의 이름 지정. 2 차 프로젝트에서 JoinTable은 최소 10 개부터 최대 20 개까지 만들게 될 것.
     joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}, // user 입장에서 사용되는 id는 user_id(name = entity의 이름, referencedColumnName = 컬럼의 이름)
     inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")}) // user 입장의 반대쪽에서 사용되는 id는 authority_name
-    private Set<Authority> authorities;
+    private Set<Authority> authorities; // 이 Line의 authorities는 Line 37의 user_authority를 가리키는 것.
 
 	public User() {
 		super();
