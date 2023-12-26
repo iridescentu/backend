@@ -31,6 +31,7 @@ public class User {
 
     @Column(name = "activated")
     private boolean activated; // 비활성화 → ex) 밴드의 가입 신청 같은 기능. 가입 신청이 들어가면 admin만 가입 승인을 할 수 있다.
+    // ex) 휴면 상태인 유저를 관리할 때
     
     @ManyToMany
     @JoinTable(

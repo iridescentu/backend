@@ -81,7 +81,10 @@ public class TokenProvider implements InitializingBean { // 아래의 코드들�
 
       User principal = new User(claims.getSubject(), "", authorities); // User 정보에서 principal 만들기
 
-      return new UsernamePasswordAuthenticationToken(principal, authorities);
+      // principal: username, null: password, authorities: 권한
+      // UsernamePasswordAuthenticationToken에서 password는 사용하지 않기 때문에 null이라는 값을 넣어 줘야 함
+      // 만약 null을 넣지 않고 principal, authorities 이렇게 두 가지만 적는다면 403 Forbidden error가 남
+      return new UsernamePasswordAuthenticationToken(principal, null, authorities);
    }
 
    public boolean validateToken(String token) {

@@ -6,7 +6,7 @@ public enum Gender {
 	
 	private final String desc;
 
-	// enum은 기본 생성자가 굳이 필요 없기 때문에 전체 생성자만 만들어 줆
+	// enum은 기본 생성자가 굳이 필요 없기 때문에 전체 생성자만 만들어 줌
 	private Gender(String desc) {
 		this.desc = desc;
 	}
